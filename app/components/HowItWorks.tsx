@@ -86,12 +86,12 @@ const ActiveCard = ({ item, index, isActive }: { item: Item; index: number; isAc
                     className={cn(
                         "p-6 rounded-3xl border transition-all duration-500 relative overflow-hidden",
                         isActive
-                            ? "bg-white border-transparent shadow-xl scale-[1.02]"
+                            ? "bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.04)]"
                             : "bg-gray-50 border-gray-100 grayscale opacity-60 scale-95"
                     )}
                 >
                     {/* Dynamic Border Glow */}
-                    <div
+                    {/* <div
                         className={cn(
                             "absolute inset-0 opacity-0 transition-opacity duration-500",
                             isActive ? "opacity-100" : ""
@@ -99,7 +99,7 @@ const ActiveCard = ({ item, index, isActive }: { item: Item; index: number; isAc
                         style={{
                             background: `radial-gradient(circle at center, ${item.glow}15 0%, transparent 70%)`,
                         }}
-                    />
+                    /> */}
 
                     {/* Icon Badge */}
                     <div className={cn(
@@ -132,7 +132,7 @@ const ActiveCard = ({ item, index, isActive }: { item: Item; index: number; isAc
                     isActive ? "scale-125 bg-white border-white" : "bg-gray-200 border-gray-100"
                 )}
                     style={{
-                        boxShadow: isActive ? `0 0 20px ${item.glow}` : 'none',
+                        // boxShadow: isActive ? `0 0 20px ${item.glow}` : 'none',
                         borderColor: isActive ? item.glow : undefined
                     }}
                 />
@@ -235,10 +235,10 @@ export default function HowItWorksEnhanced() {
                     {/* Moving Gradient Beam */}
                     <motion.div
                         style={{ height: useTransform(height, (h) => `${h}%`) }}
-                        className="absolute top-0 w-[4px] bg-gradient-to-b from-transparent via-blue-500 to-fuchsia-500 rounded-full shadow-[0_0_20px_2px_rgba(217,70,239,0.4)]"
+                        className="absolute top-0 w-[4px] bg-gradient-to-b from-transparent via-blue-500 to-fuchsia-500 rounded-full"
                     >
                         {/* The Spark Head */}
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white rounded-full border-2 border-fuchsia-500 shadow-[0_0_15px_4px_rgba(217,70,239,0.6)] animate-pulse z-40" />
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white rounded-full border-2 border-fuchsia-500 animate-pulse z-40" />
                     </motion.div>
                 </div>
 

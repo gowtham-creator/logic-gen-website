@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const scrollToSection = (sectionId: string) => {
@@ -38,9 +39,13 @@ export default function Navbar() {
     <nav className={`w-full border-b-2 border-gray-100 bg-white`}>
       <div className="mx-auto flex max-w-10/12 items-center justify-between px-6 py-5 lg:px-8">
         <Link href="/" className="flex items-center space-x-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-black text-white">
-            <span className="text-lg font-bold">L</span>
-          </div>
+            <Image
+              src="/images/lg-logo.png"
+              alt="LogicGen Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
           <span className="text-xl font-bold tracking-tight">LOGICGEN</span>
         </Link>
         <div className="hidden items-center space-x-10 md:flex">
@@ -68,7 +73,7 @@ export default function Navbar() {
             FAQs
           </a>
 
-          <Link href="/docs" className="text-base font-medium text-gray-900 hover:text-black">
+          <Link href="/about" className="text-base font-medium text-gray-900 hover:text-black">
             About us
           </Link>
         </div>

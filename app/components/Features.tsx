@@ -80,7 +80,7 @@ export default function FeaturesSection() {
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {features.map((f) => (
                         <div key={f.id} className="flex flex-row items-start">
-                            <div className={`h-8 w-14 rounded-full ${f.color} mr-3`} />
+                            <div className={`h-5 w-11 rounded-full ${f.color} mr-5`} />
                             <div>
                                 <h3 className="text-lg font-semibold">{f.title}</h3>
                                 <p className="mt-2 text-sm text-gray-600">{f.desc}</p>
@@ -92,7 +92,7 @@ export default function FeaturesSection() {
                 {/* illustrations / cards */}
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                     {features.map((f) => (
-                        <div key={f.id} className="rounded-2xl shadow-md p-6 flex flex-col items-center">
+                        <div key={f.id} className="rounded-2xl p-6 flex flex-col items-center">
                             <div className="w-full h-[40vh] rounded-xl flex items-center justify-center overflow-hidden bg-white">
                                 <f.Illustration />
                             </div>

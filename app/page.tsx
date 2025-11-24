@@ -15,34 +15,34 @@ export default function Home() {
       <main>
         {/* Your main content goes here */}
         <ScrollElement
-          viewport={{ amount: 0.5, margin: '0px 0px 40px 0px', once: true }}
+          viewport={{ amount: 0.5, margin: '0px 0px 160px 0px', once: true }}
         >
           <Hero />
         </ScrollElement>
         <ScrollElement
-          viewport={{ amount: 0.8, margin: '0px 0px 0px 0px', once: true }}
+          viewport={{ amount: 0.8, margin: '0px 0px 200px 0px', once: true }}
         >
           <FeaturesSection />
         </ScrollElement>
         <HowItWorks />
         <ScrollElement
-          viewport={{ amount: 0.8, margin: '0px 0px 0px 0px', once: true }}
+          viewport={{ amount: 0.8, margin: '0px 0px 140px 0px', once: true }}
         >
           <FAQSection />
         </ScrollElement>
         <ScrollElement
-          viewport={{ amount: 0.8, margin: '0px 0px 0px 0px', once: true }}
+          viewport={{ amount: 0.8, margin: '0px 0px 150px 0px', once: true }}
         >
           <DemoCTA />
         </ScrollElement>
         <ScrollElement
-          viewport={{ amount: 0.8, margin: '0px 0px 0px 0px', once: true }}
+          viewport={{ amount: 0.8, margin: '0px 0px 150px 0px', once: true }}
         >
 
           <Spotlight />
         </ScrollElement>
         <ScrollElement
-          viewport={{ amount: 0.8, margin: '0px 0px 0px 0px', once: true }}
+          viewport={{ amount: 0.8, margin: '0px 0px 230px 0px', once: true }}
         >
           <Footer />
         </ScrollElement>
