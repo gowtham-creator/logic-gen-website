@@ -10,12 +10,13 @@ interface Project {
 
 interface ProjectGridProps {
   projects: Project[];
-  onView: (id: string) => void;
+  onOpen: (id: string) => void;
+  onViewDetails: (id: string) => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
-export default function ProjectGrid({ projects, onView, onEdit, onDelete }: ProjectGridProps) {
+export default function ProjectGrid({ projects, onOpen, onViewDetails, onEdit, onDelete }: ProjectGridProps) {
   return (
     <div className="mb-8">
       <h2 className="text-xl font-bold text-gray-900 mb-6">Workspaces</h2>
@@ -25,7 +26,8 @@ export default function ProjectGrid({ projects, onView, onEdit, onDelete }: Proj
             key={project.id}
             title={project.title}
             date={project.date}
-            onView={() => onView(project.id)}
+            onOpen={() => onOpen(project.id)}
+            onViewDetails={() => onViewDetails(project.id)}
             onEdit={() => onEdit(project.id)}
             onDelete={() => onDelete(project.id)}
           />

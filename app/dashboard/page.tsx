@@ -39,10 +39,18 @@ export default function DashboardPage() {
     setWorkspaces([...workspaces, newWorkspace]);
   };
 
-  const handleViewWorkspace = (id: string) => {
+  const handleOpenWorkspace = (id: string) => {
     const workspace = workspaces.find((w) => w.id === id);
     if (workspace) {
       setActiveWorkspace(workspace);
+    }
+  };
+
+  const handleViewWorkspace = (id: string) => {
+    const workspace = workspaces.find((w) => w.id === id);
+    if (workspace) {
+      setSelectedWorkspace(workspace);
+      setIsViewModalOpen(true);
     }
   };
 
@@ -111,7 +119,7 @@ export default function DashboardPage() {
             <div className="max-w-[1400px] w-full mx-auto px-8 py-8">
               {/* Welcome Section */}
               <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-1">Hey, Kumari</h1>
+                <h1 className="text-3xl font-bold text-blue-600 mb-1">Hey, Kumari</h1>
                 <p className="text-gray-500">Start working on your workspaces</p>
               </div>
 
@@ -122,7 +130,8 @@ export default function DashboardPage() {
               {workspaces.length > 0 ? (
                 <ProjectGrid
                   projects={workspaces}
-                  onView={handleViewWorkspace}
+                  onOpen={handleOpenWorkspace}
+                  onViewDetails={handleViewWorkspace}
                   onEdit={handleEditWorkspace}
                   onDelete={handleDeleteWorkspace}
                 />

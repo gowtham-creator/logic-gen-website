@@ -11,8 +11,8 @@ export default function CreateDMNButton({ onClick, isCollapsed = false }: Create
   return (
     <button
       onClick={onClick}
-      className={`mb-6 bg-gray-900 hover:bg-gray-800 text-white rounded-xl py-3 flex items-center justify-center gap-2 transition-all duration-200 font-medium text-sm ${
-        isCollapsed ? 'mx-3 px-3' : 'mx-4 px-4'
+      className={`mb-6 bg-gray-900 hover:bg-gray-800 text-white rounded-full py-3 mx-auto flex items-center justify-center gap-2 transition-all duration-200 font-medium text-xs ${
+        isCollapsed ? 'mx-3' : 'mx-4 px-4'
       }`}
       title={isCollapsed ? 'Create a Workspace' : ''}
     >

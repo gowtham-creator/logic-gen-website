@@ -87,7 +87,7 @@ export default function AboutPage() {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <ScrollElement viewport={{ amount: 0.5, margin: '0px 0px 60px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.2, margin: '0px 0px -100px 0px', once: true }}>
           <section className="py-[120px] bg-white px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -112,7 +112,7 @@ export default function AboutPage() {
         </ScrollElement>
 
         {/* Our Story Section */}
-        <ScrollElement viewport={{ amount: 0.5, margin: '0px 0px 100px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.3, margin: '0px 0px -100px 0px', once: true }}>
           <section className="py-[100px] bg-[#fafafa]">
             <div className="max-w-[80%] mx-auto px-6">
               <motion.div
@@ -167,7 +167,7 @@ export default function AboutPage() {
         </ScrollElement>
 
         {/* Mission & Vision Section */}
-        <ScrollElement viewport={{ amount: 0.5, margin: '0px 0px 100px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.3, margin: '0px 0px -100px 0px', once: true }}>
           <section className="py-[100px] bg-white">
             <div className="max-w-[80%] mx-auto px-6">
               <motion.div
@@ -232,7 +232,7 @@ export default function AboutPage() {
         </ScrollElement>
 
         {/* Core Values Section */}
-        <ScrollElement viewport={{ amount: 0.5, margin: '0px 0px 100px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.3, margin: '0px 0px -100px 0px', once: true }}>
           <section className="py-[100px] bg-[#fafafa]">
             <div className="max-w-[80%] mx-auto px-6">
               <motion.div
@@ -281,7 +281,7 @@ export default function AboutPage() {
         </ScrollElement>
 
         {/* CTA Section */}
-        <ScrollElement viewport={{ amount: 0.5, margin: '0px 0px 100px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.3, margin: '0px 0px -100px 0px', once: true }}>
           <section className="py-[100px] bg-white">
             <div className="max-w-4xl mx-auto px-6 text-center">
               <motion.div
@@ -318,7 +318,7 @@ export default function AboutPage() {
           </section>
         </ScrollElement>
 
-        <ScrollElement viewport={{ amount: 0.8, margin: '0px 0px 230px 0px', once: true }}>
+        <ScrollElement viewport={{ amount: 0.2, margin: '0px 0px -150px 0px', once: true }}>
           <Footer />
         </ScrollElement>
       </main>

@@ -20,6 +20,32 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
     cx: "50%",
     cy: "50%",
   });
+  const [viewportWidth, setViewportWidth] = useState(1240);
+  const [fontSize, setFontSize] = useState(220);
+
+  // Update viewport-dependent values on mount and resize
+  useEffect(() => {
+    const updateSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        // Mobile
+        setViewportWidth(800);
+        setFontSize(80);
+      } else if (width < 768) {
+        // Small tablet
+        setViewportWidth(1000);
+        setFontSize(110);
+      } else {
+        // Desktop
+        setViewportWidth(1240);
+        setFontSize(150);
+      }
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   useEffect(() => {
     if (!svgRef.current || !hovered) return;
@@ -39,13 +65,13 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
       ref={svgRef}
       width="100%"
       height="100%"
-      viewBox="0 0 1240 400"
+      viewBox={`0 0 ${viewportWidth} 400`}
       preserveAspectRatio="xMidYMid slice"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none w-full h-full min-h-[40vh]"
+      className="select-none w-full h-full min-h-[20vh] sm:min-h-[30vh] md:min-h-[40vh]"
     >
       <defs>
         {/* Gradient for the text fill */}
@@ -81,7 +107,7 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
           <rect
             x="0"
             y="0"
-            width="1200"
+            width={viewportWidth}
             height="400"
             fill="url(#revealMask)"
           />
@@ -90,12 +116,10 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
 
       {/* Stroke layer (currently strokeWidth 0, kept as you wrote it) */}
       <motion.text
-        // x="50%"
-        // y="50%"
         x="0"
         y="50%"
         textAnchor="start"
-        textLength="1200"
+        textLength={viewportWidth * 0.97}
         lengthAdjust="spacingAndGlyphs"
         dominantBaseline="middle"
         strokeWidth={0}
@@ -104,7 +128,7 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
         strokeMiterlimit={1}
         className="fill-gray-100 stroke-neutral-900 dark:stroke-neutral-100"
         style={{
-          fontSize: "220px",
+          fontSize: `${fontSize}px`,
         }}
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
@@ -124,20 +148,20 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
         x="0"
         y="50%"
         textAnchor="start"
-        textLength="1200"
+        textLength={viewportWidth * 0.97}
         lengthAdjust="spacingAndGlyphs"
         dominantBaseline="middle"
         fill="url(#textGradient)"
         stroke="none"
         style={{
-          fontSize: "220px",
+          fontSize: `${fontSize}px`,
           paintOrder: "stroke",
         }}
         mask="url(#textMask)"
         initial={{ opacity: 0 }}
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{
-          // slightly longer + softer fade so it doesn’t “snap” off
+          // slightly longer + softer fade so it doesn't "snap" off
           duration: 0.6,
           ease: "easeInOut",
         }}

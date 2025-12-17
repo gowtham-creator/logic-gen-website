@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-const faqs = [
+const defaultFaqs = [
   {
     title: 'What is Logicgen?',
     description:
@@ -36,7 +36,18 @@ const faqs = [
   },
 ];
 
-function FAQSection() {
+interface FAQ {
+  title: string;
+  description: string;
+}
+
+interface FAQSectionProps {
+  faqs?: FAQ[];
+  title?: string;
+  badgeText?: string;
+}
+
+function FAQSection({ faqs = defaultFaqs, title = 'Frequently\nAsked Questions', badgeText = 'Get your answers' }: FAQSectionProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
@@ -44,20 +55,25 @@ function FAQSection() {
   };
 
   return (
-    <div className={`container mx-auto py-[100px] flex flex-row gap-20`}>
+    <div className={`container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-[100px] flex flex-col lg:flex-row gap-8 lg:gap-20`}>
       {/* Header with "Get your answers" pill */}
-      <div className="flex flex-col items-start mb-8 min-w-[50vh]">
+      <div className="flex flex-col items-start mb-4 lg:mb-8 w-full lg:w-auto lg:min-w-[40vh]">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-4 rounded-full bg-[#FFE3CB] px-6 py-3 text-sm font-medium"
+          className="mb-3 sm:mb-4 rounded-full bg-[#FFE3CB] px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-medium"
         >
-          Get your answers
+          {badgeText}
         </motion.div>
-        <h1 className="text-5xl font-medium tracking-wide text-gray-900">
-          Frequently<br />Asked Questions
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-wide text-gray-900">
+          {title.split('\n').map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < title.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </h1>
       </div>
 
@@ -70,14 +86,14 @@ function FAQSection() {
             onClick={() => handleClick(index)}
           >
             <button
-              className={`flex w-full cursor-pointer items-center justify-between gap-2 p-4 text-left transition-all ${activeIndex === index
+              className={`flex w-full cursor-pointer items-center justify-between gap-2 p-3 sm:p-4 text-left transition-all ${activeIndex === index
                 ? 'text-gray-900'
                 : 'text-gray-700 hover:text-gray-900'
                 }`}
             >
-              <span className="text-2xl p-5">{faq.title}</span>
+              <span className="text-base sm:text-lg md:text-xl lg:text-2xl p-2 sm:p-3 md:p-5">{faq.title}</span>
               <Plus
-                className={`h-5 w-5 transition-transform ${activeIndex === index ? 'rotate-45 text-blue-600' : 'text-gray-400'
+                className={`h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 transition-transform ${activeIndex === index ? 'rotate-45 text-blue-600' : 'text-gray-400'
                   }`}
               />
             </button>
@@ -93,7 +109,7 @@ function FAQSection() {
                     delay: 0.14,
                   }}
                 >
-                  <p className="px-10 pb-4 text-sm text-gray-600 sm:text-base">
+                  <p className="px-5 sm:px-8 md:px-10 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                     {faq.description}
                   </p>
                 </motion.div>

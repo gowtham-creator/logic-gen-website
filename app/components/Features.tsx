@@ -69,31 +69,31 @@ export default function FeaturesSection() {
     ];
 
     return (
-        <section className="py-[100px] bg-[#fafafa] z-10">
-            <div className="max-w-[80%] mx-auto px-6">
+        <section className="py-12 sm:py-16 md:py-[100px] bg-[#fafafa] z-10">
+            <div className="max-w-[95%] sm:max-w-[90%] md:max-w-[80%] mx-auto px-4 sm:px-6">
                 <div className="flex flex-col items-center text-center">
-                    <div className="inline-block bg-[#DCF2FD] text-black font-medium px-5 py-2 rounded-full text-sm mb-6">Features</div>
-                    <h2 className="text-3xl md:text-[48px] font-medium leading-tight mb-4 max-w-3xl">Turn complex policies into clean, executable logic. Instantly.</h2>
+                    <div className="inline-block bg-[#DCF2FD] text-black font-medium px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm mb-4 sm:mb-6">Features</div>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-4 max-w-3xl">Turn complex policies into clean, executable logic. Instantly.</h2>
                 </div>
 
                 {/* top feature list */}
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                     {features.map((f) => (
                         <div key={f.id} className="flex flex-row items-start">
-                            <div className={`h-5 w-11 rounded-full ${f.color} mr-5`} />
+                            <div className={`h-4 w-8 sm:h-5 sm:w-11 rounded-full ${f.color} mr-3 sm:mr-5 flex-shrink-0 mt-1`} />
                             <div>
-                                <h3 className="text-lg font-semibold">{f.title}</h3>
-                                <p className="mt-2 text-sm text-gray-600">{f.desc}</p>
+                                <h3 className="text-base sm:text-lg md:text-xl font-semibold">{f.title}</h3>
+                                <p className="mt-1 sm:mt-2 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{f.desc}</p>
                             </div>
                         </div>
                     ))}
                 </div>
 
                 {/* illustrations / cards */}
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     {features.map((f) => (
-                        <div key={f.id} className="rounded-2xl p-6 flex flex-col items-center">
-                            <div className="w-full h-[40vh] rounded-xl flex items-center justify-center overflow-hidden bg-white">
+                        <div key={f.id} className="rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center">
+                            <div className="w-full h-[30vh] sm:h-[35vh] md:h-[40vh] rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden bg-white">
                                 <f.Illustration />
                             </div>
                         </div>

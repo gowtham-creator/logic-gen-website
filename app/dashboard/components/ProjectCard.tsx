@@ -1,17 +1,18 @@
 'use client';
 
-import { DotsVertical } from '@mynaui/icons-react';
+import { Dots, DotsVertical } from '@mynaui/icons-react';
 import { useState } from 'react';
 
 interface ProjectCardProps {
   title: string;
   date: string;
-  onView: () => void;
+  onOpen: () => void;
+  onViewDetails: () => void;
   onEdit: () => void;
   onDelete: () => void;
 }
 
-export default function ProjectCard({ title, date, onView, onEdit, onDelete }: ProjectCardProps) {
+export default function ProjectCard({ title, date, onOpen, onViewDetails, onEdit, onDelete }: ProjectCardProps) {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleAction = (action: () => void) => {
@@ -22,7 +23,7 @@ export default function ProjectCard({ title, date, onView, onEdit, onDelete }: P
   return (
     <div className="bg-white rounded-2xl p-5 transition-all duration-200 relative group cursor-pointer">
       <div className="flex items-start justify-between">
-        <div className="flex-1 min-w-0" onClick={onView}>
+        <div className="flex-1 min-w-0" onClick={onOpen}>
           <h3 className="text-base font-semibold text-gray-900 mb-1.5 truncate">{title}</h3>
           <p className="text-sm text-gray-500">{date}</p>
         </div>
@@ -36,7 +37,7 @@ export default function ProjectCard({ title, date, onView, onEdit, onDelete }: P
             }}
             className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
           >
-            <DotsVertical className="w-5 h-5 text-gray-600" />
+            <Dots className="w-5 h-5 text-gray-600" />
           </button>
 
           {/* Dropdown Menu */}
@@ -48,7 +49,7 @@ export default function ProjectCard({ title, date, onView, onEdit, onDelete }: P
               />
               <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-20 animate-in fade-in slide-in-from-top-2 duration-200">
                 <button
-                  onClick={() => handleAction(onView)}
+                  onClick={() => handleAction(onViewDetails)}
                   className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   View Details

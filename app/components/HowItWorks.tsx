@@ -73,56 +73,61 @@ const ActiveCard = ({ item, index, isActive }: { item: Item; index: number; isAc
         <motion.div
             className={cn(
                 "relative flex items-center justify-between w-full z-20",
-                index % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                // On mobile: always flex-row (content on right of line)
+                // On desktop (md:): alternate based on index
+                "flex-row md:flex-row",
+                index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
             )}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
-            {/* Content Box */}
-            <div className="w-[42%] group">
+            {/* Mobile Node Indicator */}
+            <div className="md:hidden flex-shrink-0 w-8 flex items-center justify-center relative">
                 <div
                     className={cn(
-                        "p-6 rounded-3xl border transition-all duration-500 relative overflow-hidden",
+                        "w-3 h-3 rounded-full border-2 z-30 transition-all duration-300",
+                        isActive ? "bg-white scale-110" : "bg-gray-200 border-gray-100"
+                    )}
+                    style={{
+                        borderColor: isActive ? item.glow : undefined
+                    }}
+                />
+            </div>
+
+            {/* Content Box */}
+            <div className="flex-1 md:w-[42%] md:flex-none group">
+                <div
+                    className={cn(
+                        "p-4 sm:p-5 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-500 relative overflow-hidden",
                         isActive
                             ? "bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.04)]"
                             : "bg-gray-50 border-gray-100 grayscale opacity-60 scale-95"
                     )}
                 >
-                    {/* Dynamic Border Glow */}
-                    {/* <div
-                        className={cn(
-                            "absolute inset-0 opacity-0 transition-opacity duration-500",
-                            isActive ? "opacity-100" : ""
-                        )}
-                        style={{
-                            background: `radial-gradient(circle at center, ${item.glow}15 0%, transparent 70%)`,
-                        }}
-                    /> */}
-
                     {/* Icon Badge */}
                     <div className={cn(
-                        "w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-colors duration-500",
+                        "w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-colors duration-500",
                         isActive ? "bg-gray-50" : "bg-gray-200"
                     )}>
                         <div className={cn("transition-all duration-500", isActive ? item.color : "text-gray-400")}>
-                            <item.Icon className="w-6 h-6" />
+                            <item.Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                     </div>
 
                     <h3 className={cn(
-                        "text-xl font-bold mb-2 transition-colors duration-500",
+                        "text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 transition-colors duration-500",
                         isActive ? "text-gray-900" : "text-gray-500"
                     )}>
                         {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">{item.desc}</p>
                 </div>
             </div>
 
-            {/* Connector Line (Horizontal) */}
-            <div className="w-[16%] flex items-center justify-center relative h-20">
+            {/* Connector Line (Horizontal) - Hidden on mobile */}
+            <div className="hidden md:flex w-[16%] items-center justify-center relative h-20">
                 {/* We use an SVG here to draw the horizontal connector dynamically */}
                 <ConnectorLine isActive={isActive} color={item.glow} isLeft={index % 2 !== 0} />
 
@@ -132,14 +137,13 @@ const ActiveCard = ({ item, index, isActive }: { item: Item; index: number; isAc
                     isActive ? "scale-125 bg-white border-white" : "bg-gray-200 border-gray-100"
                 )}
                     style={{
-                        // boxShadow: isActive ? `0 0 20px ${item.glow}` : 'none',
                         borderColor: isActive ? item.glow : undefined
                     }}
                 />
             </div>
 
-            {/* Empty side for layout balance */}
-            <div className="w-[42%]" />
+            {/* Empty side for layout balance - Hidden on mobile */}
+            <div className="hidden md:block w-[42%]" />
         </motion.div>
     );
 };
@@ -208,9 +212,9 @@ export default function HowItWorksEnhanced() {
 
 
     return (
-        <section className={`py-[100px] bg-white relative overflow-hidden ${satoshi.className}`}>
+        <section className={`py-12 sm:py-16 md:py-[100px] bg-white relative overflow-hidden ${satoshi.className}`}>
             {/* Header */}
-            <div className="max-w-[80%] mx-auto px-6 mb-24">
+            <div className="max-w-[95%] sm:max-w-[90%] md:max-w-[80%] mx-auto px-4 sm:px-6 mb-12 sm:mb-16 md:mb-24">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -218,17 +222,17 @@ export default function HowItWorksEnhanced() {
                     className="flex flex-col items-center text-center"
                 >
                     <div className="flex flex-col items-center text-center">
-                        <div className="inline-block bg-[#FFC9F3] text-black font-medium px-5 py-2 rounded-full text-sm mb-6">How it works?</div>
-                        <h2 className="text-3xl md:text-[48px] font-medium leading-tight mb-4 max-w-3xl">From policy text to validated<br />decision tables</h2>
+                        <div className="inline-block bg-[#FFC9F3] text-black font-medium px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm mb-4 sm:mb-6">How it works?</div>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-4 max-w-3xl">From policy text to validated<br className="hidden sm:block" /> decision tables</h2>
                     </div>
                 </motion.div>
             </div>
 
             {/* Timeline Container */}
-            <div ref={containerRef} className="max-w-6xl mx-auto px-6 relative">
+            <div ref={containerRef} className="max-w-6xl mx-auto px-4 sm:px-6 relative">
 
-                {/* THE CENTRAL BEAM */}
-                <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-20 flex justify-center pointer-events-none">
+                {/* THE CENTRAL BEAM - Hidden on mobile, shown on md: */}
+                <div className="hidden md:flex absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-20 justify-center pointer-events-none">
                     {/* Static Track */}
                     <div className="h-full w-[2px] bg-gray-100 rounded-full" />
 
@@ -242,8 +246,11 @@ export default function HowItWorksEnhanced() {
                     </motion.div>
                 </div>
 
+                {/* Mobile Vertical Line - Shown on mobile only */}
+                <div className="md:hidden absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-purple-500 to-fuchsia-500 rounded-full pointer-events-none" />
+
                 {/* Cards List */}
-                <div className="space-y-24 pb-32">
+                <div className="space-y-8 sm:space-y-12 md:space-y-24 pb-16 sm:pb-24 md:pb-32">
                     {items.map((item, index) => (
                         <ActiveCard
                             key={item.id}
